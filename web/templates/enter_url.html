@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Enter URL</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script>
+        function validateURL() {
+            var allowedDomains = ['instagram.com', 'vimeo.com', 'tiktok.com'];
+            var currentURL = window.location.href;
+            var isValid = false;
+
+            for (var i = 0; i < allowedDomains.length; i++) {
+                if (currentURL.includes(allowedDomains[i])) {
+                    isValid = true;
+                    
+                }
+            }
+
+            if (!isValid) {
+                alert("This website only accepts URLs from Instagram, Vimeo, and TikTok.");
+            }
+        }
+    </script>
+    <style>
+
+        form {
+            width: 50%;
+            max-width: 400px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            margin: 0 auto;
+        }
+        form button {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body onload="validateURL()">
+<div class="card o-hidden border-0 shadow-lg my-5">
+    <div class="card-body p-0">
+        <div class="row">
+            <div class="col-lg-3"></div>
+            <div class="col-lg-6">
+                <div class="p-5">
+                    <div class="text-center">
+                        <h1 class="h4 text-gray-900 mb-4">Download video!</h1>
+                    </div>
+
+                    <form id="urlForm" method="post">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+
+                        <input type="submit" required>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
