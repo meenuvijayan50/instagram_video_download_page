@@ -29,27 +29,6 @@ def enter_url(request):
 
     return render(request, 'enter_url.html', {'form': form})
 
-
-# def enter_url(request):
-#     if request.method == 'POST':
-#         form = URLForm(request.POST)
-#
-#         if form.is_valid():
-#             url = form.cleaned_data['url']
-#             if url.startswith("https://www.instagram.com"):
-#                 response, title = get_video_info(url)
-#                 video_url = url
-#                 return render(request, 'success_page.html', {'title': title,'response': response, 'video_url': video_url})
-#             else:
-#                 return HttpResponse("URL is not from Instagram", status=400)
-#         else:
-#             return HttpResponse("Invalid form data", status=400)
-#     else:
-#         # If it's a GET request or a failed form submission, initialize the form with empty fields
-#         form = URLForm()
-#
-#     return render(request, 'enter_url.html', {'form': form})
-
 @csrf_exempt
 def get_video_info(url):
     try:
